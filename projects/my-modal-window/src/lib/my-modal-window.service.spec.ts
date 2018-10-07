@@ -33,7 +33,18 @@ describe('MyModalWindowService', () => {
     });
   });
 
+  describe('close', () => {
+    it('should remove the modal window from the DOM', () => {
+      const element = service.open();
+      service.close();
+      expect(document.querySelectorAll('my-modal-window').length).toEqual(0);
+    });
+  });
+
   afterEach(() => {
-    document.body.removeChild(document.body.querySelector('my-modal-window'));
+    const element = document.body.querySelector('my-modal-window');
+    if (element) {
+      document.body.removeChild(element);
+    }
   });
 });
