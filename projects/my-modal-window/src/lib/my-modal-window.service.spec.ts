@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MyModalWindowService } from './my-modal-window.service';
+import {MyModalWindowConfig} from './models/MyModalWindowConfig';
+import {NgElement, WithProperties} from '@angular/elements';
 
 describe('MyModalWindowService', () => {
   let service: MyModalWindowService;
@@ -22,6 +24,15 @@ describe('MyModalWindowService', () => {
     it('should return the element', () => {
       expect(service.open()).toEqual(document.querySelector('my-modal-window'));
     });
+
+    it('should set the config property of my-modal-window with the config parameter', () => {
+      const config = new MyModalWindowConfig();
+      service.open(config);
+      const element = document.querySelector('my-modal-window') as NgElement & WithProperties<{config: MyModalWindowConfig}>;
+      const elementConfig = (element as any).config;
+      expect(elementConfig).toEqual(config);
+    });
+  });
 
   afterEach(() => {
     document.body.removeChild(document.body.querySelector('my-modal-window'));
