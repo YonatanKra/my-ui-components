@@ -19,6 +19,10 @@ describe('MyModalWindowService', () => {
       expect(document.querySelectorAll('my-modal-window').length).toEqual(1);
     });
 
+    it('should return the element', () => {
+      expect(service.open()).toEqual(document.querySelector('my-modal-window'));
+    });
+
   afterEach(() => {
     document.body.removeChild(document.body.querySelector('my-modal-window'));
   });
