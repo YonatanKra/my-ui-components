@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { MyModalWindowService } from './my-modal-window.service';
 import {MyModalWindowConfig} from './models/MyModalWindowConfig';
-import {NgElement, WithProperties} from '@angular/elements';
 
 describe('MyModalWindowService', () => {
   let service: MyModalWindowService;
@@ -28,7 +27,7 @@ describe('MyModalWindowService', () => {
     it('should set the config property of my-modal-window with the config parameter', () => {
       const config = new MyModalWindowConfig();
       service.open(config);
-      const element = document.querySelector('my-modal-window') as NgElement & WithProperties<{config: MyModalWindowConfig}>;
+      const element = document.querySelector('my-modal-window');
       const elementConfig = (element as any).config;
       expect(elementConfig).toEqual(config);
     });

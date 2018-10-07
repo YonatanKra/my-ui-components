@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {MyModalWindowConfig} from './models/MyModalWindowConfig';
-import {NgElement, WithProperties} from "@angular/elements";
+import './models/ElementAPI';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +9,9 @@ export class MyModalWindowService {
   constructor() { }
 
   open(config?: MyModalWindowConfig) {
-    let element = document.body.querySelector('my-modal-window') as NgElement & WithProperties<{config: MyModalWindowConfig}>;;
+    let element = document.body.querySelector('my-modal-window');
     if (!element) {
-      element = document.createElement('my-modal-window') as NgElement & WithProperties<{config: MyModalWindowConfig}>;;
+      element = document.createElement('my-modal-window');
     }
     element.config = config;
     document.body.appendChild(element);
