@@ -13,5 +13,6 @@ export class MyModalWindowService {
       element = document.createElement('my-modal-window');
     }
     document.body.appendChild(element);
+    return element;
   }
 }
