@@ -17,4 +17,12 @@ export class MyModalWindowService {
     document.body.appendChild(element);
     return element;
   }
+
+  close() {
+    const element = document.querySelector('my-modal-window');
+    if (!element) {
+      return;
+    }
+    document.body.removeChild(element);
+  }
 }
