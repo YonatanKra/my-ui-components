@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, Injector, OnInit} from '@angular/core';
+import {MyModalWindowConfig} from "./models/MyModalWindowConfig";
 
 @Component({
   selector: 'lib-my-modal-window',
@@ -10,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyModalWindowComponent implements OnInit {
 
-  constructor() { }
+  private _config: MyModalWindowConfig;
+  private _overlay: HTMLElement;
+  private _content: HTMLElement;
+
+  set config(configObject: MyModalWindowConfig) {
+    this._config = configObject;
+    this._setModal();
+  }
+
+  get config(): MyModalWindowConfig {
+    return this._config;
+  }
+
+  constructor(private element: ElementRef) {
+  }
 
   ngOnInit() {
   }
 
+  private _setModal() {
+    this.element.nativeElement.querySelector('.my-modal-window-content').innerHTML = this.config.content;
+  }
 }
