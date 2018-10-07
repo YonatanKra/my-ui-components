@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyModalWindowComponent } from './my-modal-window.component';
+import {MyModalWindowConfig} from './models/MyModalWindowConfig';
 
 describe('MyModalWindowComponent', () => {
   let component: MyModalWindowComponent;
@@ -29,4 +30,15 @@ describe('MyModalWindowComponent', () => {
       expect(content).toBeTruthy();
     });
   });
+
+  describe('open and change to modal', () => {
+    it('should add the content to the content div', () => {
+      const content = element.querySelector('.my-modal-window-content');
+      const config = new MyModalWindowConfig();
+      config.content = '<h1>Hello Modal!</h1>';
+      component.config = config;
+      expect(content.innerHTML).toEqual(config.content);
+    });
+  });
+
 });
