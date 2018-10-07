@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'lib-my-modal-window',
   template: `
-    <p>
-      my-modal-window works!
-    </p>
+    <div class="my-modal-window-overlay"></div>
+    <div class="my-modal-window-content"></div>
   `,
   styles: []
 })
