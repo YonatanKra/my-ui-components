@@ -2,6 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyModalWindowComponent } from './my-modal-window.component';
 import {MyModalWindowConfig} from './models/MyModalWindowConfig';
+import {Component} from "@angular/core";
+
+@Component({
+  selector: 'lib-my-parent',
+  template: `
+    <lib-my-modal-window [config]="parentConfig"></lib-my-modal-window>
+  `,
+})
+class MyParentComponent {
+  public parentConfig: MyModalWindowConfig;
+}
 
 describe('MyModalWindowComponent', () => {
   let component: MyModalWindowComponent;
@@ -10,7 +21,7 @@ describe('MyModalWindowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyModalWindowComponent ]
+      declarations: [ MyModalWindowComponent, MyParentComponent ]
     })
     .compileComponents();
   }));
@@ -39,6 +50,29 @@ describe('MyModalWindowComponent', () => {
       component.config = config;
       expect(content.innerHTML).toEqual(config.content);
     });
+
+    describe('binding', () => {
+      let content, config, component;
+      beforeEach(() => {
+
+      });
+
+      it('should be changed from parent component', () => {
+        const parentFixture = TestBed.createComponent(MyParentComponent);
+        const parentComponent = parentFixture.componentInstance;
+        parentFixture.detectChanges();
+
+        const config = new MyModalWindowConfig();
+        config.content = '<h1>Hello Start Wars</h1>';
+        parentComponent.parentConfig = config;
+        parentFixture.detectChanges();
+
+        const content = parentFixture.nativeElement.querySelector('.my-modal-window-content');
+        expect(content.innerHTML).toEqual(config.content);
+      });
+    });
+
+
   });
 
 });
