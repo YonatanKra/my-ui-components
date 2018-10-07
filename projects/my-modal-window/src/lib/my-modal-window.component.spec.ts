@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MyModalWindowComponent } from './my-modal-window.component';
 import {MyModalWindowConfig} from './models/MyModalWindowConfig';
 import {Component} from "@angular/core";
+import {MyModalWindowModule} from "./my-modal-window.module";
 
 @Component({
   selector: 'lib-my-parent',
@@ -71,8 +72,28 @@ describe('MyModalWindowComponent', () => {
         expect(content.innerHTML).toEqual(config.content);
       });
     });
-
-
   });
-
 });
+
+describe('integration', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ MyParentComponent ],
+      imports: [ MyModalWindowModule ]
+    })
+      .compileComponents();
+  });
+  it('should display the overlay and the content', () => {
+    const fixture = TestBed.createComponent(MyParentComponent);
+    fixture.detectChanges();
+    const element = document.createElement('my-modal-window');
+    const config = new MyModalWindowConfig();
+    config.content = '<h1>Hello Integration!</h1>';
+    element.config = config;
+    document.body.appendChild(element);
+    expect(element.querySelector('.my-modal-window-content').innerHTML).toEqual(config.content);
+    document.body.removeChild(element);
+  });
+});
+
+

@@ -52,13 +52,20 @@ export class MyModalWindowComponent implements OnInit {
   }
 
   constructor(private element: ElementRef) {
+
   }
 
   ngOnInit() {
-    this._content = this.element.nativeElement.querySelector('.my-modal-window-content');
+  }
+
+  get contentElement() {
+    if (!this._content) {
+      this._content = this.element.nativeElement.querySelector('.my-modal-window-content');
+    }
+    return this._content;
   }
 
   private _setModal() {
-    this._content.innerHTML = this.config.content;
+    this.contentElement.innerHTML = this.config.content;
   }
 }
