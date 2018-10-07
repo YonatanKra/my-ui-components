@@ -28,9 +28,10 @@ export class MyModalWindowComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._content = this.element.nativeElement.querySelector('.my-modal-window-content');
   }
 
   private _setModal() {
-    this.element.nativeElement.querySelector('.my-modal-window-content').innerHTML = this.config.content;
+    this._content.innerHTML = this.config.content;
   }
 }
