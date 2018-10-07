@@ -17,6 +17,9 @@ export class MyModalWindowComponent implements OnInit {
 
   @Input()
   set config(configObject: MyModalWindowConfig) {
+    if (!configObject) {
+      return;
+    }
     this._config = configObject;
     this._setModal();
   }
