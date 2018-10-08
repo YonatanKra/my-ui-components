@@ -1,5 +1,6 @@
 import {Component, ElementRef} from '@angular/core';
-import {MyModalWindowConfig} from "../../projects/my-modal-window/src/lib/models/MyModalWindowConfig";
+import {MyModalWindowConfig} from 'my-modal-window';
+import {MyModalWindowService} from 'my-modal-window';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +10,15 @@ import {MyModalWindowConfig} from "../../projects/my-modal-window/src/lib/models
 export class AppComponent {
   title = 'my-ui-components';
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private modal: MyModalWindowService) {
 
   }
 
   openModal() {
-    const modal = document.createElement('my-modal-window');
     const config = new MyModalWindowConfig();
     config.content = '<h1>Hello Angular-IL</h1>';
-
-    modal.config = config;
-    this.element.nativeElement.appendChild(modal);
+    this.modal.open(config).addEventListener('click', () => {
+      this.modal.close();
+    });
   }
 }
