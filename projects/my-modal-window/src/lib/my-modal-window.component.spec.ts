@@ -73,6 +73,18 @@ describe('MyModalWindowComponent', () => {
       });
     });
   });
+
+  describe(`close`, () => {
+    it(`should remove itself form the DOM`, () => {
+      const config = new MyModalWindowConfig();
+      config.content = '<h1>Hello Modal!</h1>';
+      component.config = config;
+      const currentElement = document.getElementById(element.id);
+      component.close = true;
+      expect(currentElement).toBeTruthy();
+      expect(document.getElementById(element.id)).toBeFalsy();
+    });
+  });
 });
 
 describe('integration', () => {
