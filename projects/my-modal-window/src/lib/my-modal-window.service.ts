@@ -23,6 +23,6 @@ export class MyModalWindowService {
     if (!element) {
       return;
     }
-    document.body.removeChild(element);
+    element.close = true;
   }
 }

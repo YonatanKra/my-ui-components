@@ -3,6 +3,6 @@ import {MyModalWindowConfig} from "./MyModalWindowConfig";
 
 declare global {
   interface HTMLElementTagNameMap {
-    'my-modal-window': NgElement & WithProperties<{config: MyModalWindowConfig, closeModal: void}>;
+    'my-modal-window': NgElement & WithProperties<{config: MyModalWindowConfig, closeModal: void, close: boolean}>;
   }
 }
