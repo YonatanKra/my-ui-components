@@ -5,3 +5,4 @@
 export * from './lib/my-modal-window.service';
 export * from './lib/my-modal-window.component';
 export * from './lib/my-modal-window.module';
+export * from './lib/models/MyModalWindowConfig';
