@@ -39,6 +39,13 @@ export class MyModalWindowComponent implements OnInit {
   private _content: HTMLElement;
 
   @Input()
+  set close(value) {
+    if (value) {
+      this._close();
+    }
+  }
+
+  @Input()
   set config(configObject: MyModalWindowConfig) {
     if (!configObject) {
       return;
@@ -67,5 +74,9 @@ export class MyModalWindowComponent implements OnInit {
 
   private _setModal() {
     this.contentElement.innerHTML = this.config.content;
+  }
+
+  private _close() {
+    this.element.nativeElement.parentElement.removeChild(this.element.nativeElement);
   }
 }
