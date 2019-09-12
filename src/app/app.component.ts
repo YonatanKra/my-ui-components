@@ -2,6 +2,7 @@ import {Component, ElementRef} from '@angular/core';
 import {MyModalWindowConfig} from 'my-modal-window';
 import {MyModalWindowService} from 'my-modal-window';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,9 +17,7 @@ export class AppComponent {
 
   openModal() {
     const config = new MyModalWindowConfig();
-    config.content = '<h1>Hello Angular-IL</h1>';
-    this.modal.open(config).addEventListener('click', () => {
-      this.modal.close();
-    });
+    config.content = '<my-stam></my-stam>';
+    this.modal.open(config);
   }
 }
